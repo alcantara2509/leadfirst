@@ -41,14 +41,6 @@ const actingOptions = [
 
 const leadVolumeOptions = ["0 a 5", "6 a 15", "16 a 30", "Mais de 30"];
 
-const priceOptions = [
-  "Até R$ 97",
-  "R$ 97 a R$ 197",
-  "R$ 197 a R$ 497",
-  "Acima de R$ 497",
-  "Depende do resultado",
-];
-
 type SubmitStatus = "idle" | "loading" | "success" | "error";
 
 type WaitlistFormValues = {
@@ -57,7 +49,6 @@ type WaitlistFormValues = {
   city: string;
   mainActivity: string;
   leadsPerWeek: string;
-  priceRange: string;
   acceptInterview: boolean;
   source: string;
 };
@@ -308,7 +299,6 @@ export default function Home() {
       city: value("city"),
       mainActivity: value("acting"),
       leadsPerWeek: value("leadVolume"),
-      priceRange: value("price"),
       acceptInterview: value("feedback") === "Sim",
       source: getSource(),
     };
@@ -320,7 +310,6 @@ export default function Home() {
       city: values.city,
       main_activity: values.mainActivity,
       leads_per_week: values.leadsPerWeek,
-      price_range: values.priceRange,
       accept_interview: values.acceptInterview,
       source: values.source,
     });
@@ -674,18 +663,10 @@ export default function Home() {
                 />
 
                 <SelectField
-                  label="Quanto você pagaria por mês por uma ferramenta que ajudasse a responder e qualificar leads?"
-                  name="price"
-                  options={priceOptions}
+                  label="Aceitaria ter uma conversa rápida por WhatsApp para dar feedback?"
+                  name="feedback"
+                  options={["Sim", "Não"]}
                 />
-
-                <div className="sm:col-span-2">
-                  <SelectField
-                    label="Aceitaria conversar por 10 minutos para dar feedback?"
-                    name="feedback"
-                    options={["Sim", "Não"]}
-                  />
-                </div>
               </div>
 
               <button
